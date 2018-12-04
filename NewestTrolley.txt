@@ -1,0 +1,142 @@
+<!--<!DOCTYPE html>
+	<html>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<head>
+			<title>Trolley Tracker</title>
+			<link rel="stylesheet" href="Style.css">
+		</head>
+		<body>
+			<div id="image">
+				<img src="hatch_logo.png" alt="Hatch Icon">
+			</div><br><br><br>
+			
+			<div id="image2">
+				<img src="trolleypic.jpg" alt="trolley">
+			</div>
+			
+			<div id="text">
+				<h1>Trolley Tracker</h1>
+<!--identify route of trolley-->
+<!--identify location of the trolley & direction
+				<ol>
+					<li>Ivings Drive Port Elgin</li><br>
+					<li>Downtown Port Elgin</li><br>
+					<li>Port Elgin Beach (pick-ups both directions)</li><br>
+					<li>Port Elgin Splash Pad (pick-ups both directions)</li><br>
+					<li>Pegasus Trail (pick-ups both directions)</li><br>
+					<li>Huron St. and Beach Rd. pick-ups both directions</li><br>
+					<li>Huron St and High St. (pick-ups both directions)</li>
+					<li>Museum Stop</li>
+				</ol>
+			</div><br><br>-->
+		
+			<p id="demo">Click the button to get the trolley's position.</p>
+			<button onclick="getLocation()">Try It</button>
+			
+			<div id="mapholder">
+				<script src="https://maps.google.com/maps/api/js?key=AIzaSyASj6hB697TPc7Bt0B7ElkWpaA_rig8IvA&callback=initMap"></script>
+				<script>
+					var x = document.getElementById("demo");
+					function getLocation() {
+						if (navigator.geolocation) {
+							navigator.geolocation.getCurrentPosition(showPosition, showError);
+						} else { 
+							x.innerHTML = "Geolocation is not supported by this browser.";
+						}
+					}
+
+					function showPosition(position) {
+						var lat = position.coords.latitude;
+						var lon = position.coords.longitude;
+						var latlon = new google.maps.LatLng(lat, lon)
+						var mapholder = document.getElementById('mapholder')
+						mapholder.style.height = '250px';
+						mapholder.style.width = '500px';
+
+						var myOptions = {
+							center:latlon,zoom:14,
+							mapTypeId:google.maps.MapTypeId.ROADMAP,
+							mapTypeControl:false,
+							navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+						}
+    
+						var map = new google.maps.Map(document.getElementById("mapholder"), myOptions);
+						var marker = new google.maps.Marker({position:latlon,map:map,title:"You are here!"});
+					}
+
+					function showError(error) {
+						switch(error.code) {
+							case error.PERMISSION_DENIED:
+								x.innerHTML = "User denied the request for Geolocation."
+							break;
+							case error.POSITION_UNAVAILABLE:
+								x.innerHTML = "Location information is unavailable."
+							break;
+							case error.TIMEOUT:
+								x.innerHTML = "The request to get user location timed out."
+							break;
+							case error.UNKNOWN_ERROR:
+								x.innerHTML = "An unknown error occurred."
+							break;
+						}
+					}
+
+			</script> 
+		</div>	
+		<style>
+				html, body {
+				height: 100%;
+				margin: 0;
+				padding: 0;	
+			}
+
+				#floating-panel {
+					position: absolute;
+					top: 10px;
+					left: 25%;
+					z-index: 5;
+					background-color: #fff;
+					padding: 5px;
+					border: 1px solid #999;
+					text-align: center;
+					font-family: 'Roboto','sans-serif';
+					line-height: 30px;
+					padding-left: 10px;
+				}
+
+				#map{
+					height: 100%;
+			} 
+			</style>
+		</head>
+		<body>
+			<div id="floating-panel">
+			<b>Start: </b>
+			<select id="start">
+				<option value="Ivings Drive Port Elgin">Ivings Drive Port Elgin</option>
+				<option value="Downtown Port Elgin">Downtown Port Elgin</option>
+				<option value="Port Elgin Beach">Port Elgin Beach</option>
+				<option value="Port Elgin Splash Pad">Port Elgin Splash Pad</option>
+				<option value="Pegasus Trail">Pegasus Trail</option>
+				<option value="Huron Street and Beach Road">Huron St. and Beach Rd.</option>
+				<option value="Huron Street and High Street">Huron St and High St.</option>
+				<option value="Museum Stop">Museum Stop</option>
+
+			</select>
+			<b>End: </b>
+			<select id="end">
+				<option value="Museum Stop">Musuem Stop</option>
+				<option value="Huron Street and High Street">Huron St and High St.</option>
+				<option value="Huron Street and Beach Road">Huron St. and Beach Rd.</option>
+				<option value="Pegasus Trail">Pegasus Trail</option>
+				<option value="Port Elgin Splash Pad">Port Elgin Splash Pad</option>
+				<option value="Port Elgin Beach">Port Elgin Beach</option>
+				<option value="Downtown Port Elgin">Downtown Port Elgin</option>
+				<option value="Ivings Drive Port Elgin">Ivings Drive Port Elgin</option>
+
+			</select>
+    </div>
+			<p>For more details on the Saugeen Shores Trolley, visit the website at:</p>
+			<a href="http://www.sstrolley.ca/">www.sstrolley.com</a>
+		</body>
+	</html>
