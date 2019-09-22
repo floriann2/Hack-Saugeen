@@ -7,8 +7,12 @@ People only download mobile apps when they intend to use it often. I was asked t
 ## What It Does
 Identifies the route, location of the trolley, and the direction it's going in (real-time).
 
-## How I Built It
-Used a combination of front end web technologies (HTML/CSS, JS) and integrated Google Maps API.
+## Technologies/Languages
+```
+- HTML/CSS
+- JavaScript
+- Google Maps API
+```
 
 ## Challenges
 Implementing the Google Maps API into a CMS such as Weebly
